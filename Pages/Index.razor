@@ -1,0 +1,55 @@
+﻿@page "/"
+@inject CurrencyConvertor.CurrencyConverter.ICurrencyConverter _iCurrencyConverter
+@using CurrencyConvertor.CurrencyConverter
+
+<h2>Welcome to Currency Converter!</h2>
+<h3>Result = @ResultOfCunvert</h3>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <EditForm Model="@conHelper" OnValidSubmit="@ConverCurrency" OnInvalidSubmit="RiseErrMessage">
+                <DataAnnotationsValidator/>
+                <div class="form-group">
+                    <label for="fromCurrency">From Currency</label>
+                    <InputText type="text" class="form-control" id="fromCurrency" placeholder="Enter from currency" @bind-Value="conHelper.FromCurrency"/>
+                    <ValidationMessage For="@(() => conHelper.FromCurrency)"/>
+                </div>
+                <div class="form-group">
+                    <label for="toCurrency">To Currency</label>
+                    <InputText type="text" class="form-control" id="toCurrency" placeholder="Enter to currency" @bind-Value="conHelper.ToCurrency"/>
+                    <ValidationMessage For="@(() => conHelper.ToCurrency)" />
+                </div>
+                <div class="form-group">
+                    <label for="toCurrency">Amount</label>
+                    <InputNumber class="form-control" id="AmountOf" placeholder="Enter to amount" @bind-Value="conHelper.CrAmount"/>
+                    <ValidationMessage For="@(() => conHelper.CrAmount)" />
+                </div>
+                <button type="submit" class="btn btn-primary">Convert</button>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+@code
+{
+    ConvertHelper conHelper = new ConvertHelper();
+    double ResultOfCunvert = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+    }
+
+    public void ConverCurrency()
+    {
+        var converter = CurrencyConverter.Instance;
+        double convertedAmount = converter.Convert(conHelper.FromCurrency, conHelper.ToCurrency, conHelper.CrAmount);
+        ResultOfCunvert = convertedAmount;
+    }
+
+    public void RiseErrMessage()
+    {
+        StateHasChanged();
+    }
+}
