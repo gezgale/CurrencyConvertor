@@ -17,14 +17,14 @@ namespace CurrencyConvertor.CurrencyConverter
         = new ConcurrentDictionary<string, Dictionary<string, double>>
         {
             //Path 1 From USD To EUR
-            //["USD"] = new Dictionary<string, double> { ["CAD"] = 1.34 },
-            //["CAD"] = new Dictionary<string, double> { ["GBP"] = 0.58 },
-            //["GBP"] = new Dictionary<string, double> { ["EUR"] = 0.43 },
-            //["EUR"] = new Dictionary<string, double> { ["USD"] = 1.16 },
+            ["USD"] = new Dictionary<string, double> { ["CAD"] = 1.34 },
+            ["CAD"] = new Dictionary<string, double> { ["GBP"] = 0.58 },
+            ["GBP"] = new Dictionary<string, double> { ["EUR"] = 0.43 },
+            ["EUR"] = new Dictionary<string, double> { ["USD"] = 1.16 },
 
             ////Path 2 From USD To EUR
-            ["USD"] = new Dictionary<string, double> { ["JGD"] = 0.7 },
-            ["JGD"] = new Dictionary<string, double> { ["EUR"] = 0.3 },
+            //["USD"] = new Dictionary<string, double> { ["JGD"] = 0.7 },
+            //["JGD"] = new Dictionary<string, double> { ["EUR"] = 0.3 },
 
             //Path 3 From USD To EUR
             //["USD"] = new Dictionary<string, double> { ["PLK"] = 7.2 },
@@ -136,13 +136,7 @@ namespace CurrencyConvertor.CurrencyConverter
             throw new InvalidOperationException("Cannot find a conversion path.");
         }
 
-
-       
-
-       
-
-
-      
+              
 
         /// <summary>
         /// In this line of code, we are using the AddOrUpdate function of the conversionRates dictionary to safely update or add currency conversion rates. This function has the capability to either add a new value to the dictionary with a specified key or update an existing value based on the provided key.
